@@ -1,0 +1,77 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Search criteria
+      <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="key" class="col-sm-2 control-label">Key</label>
+        <div class="col-sm-10">
+          <input [(ngModel)]="search.key" name="key" class="form-control" id="key" placeholder="Key">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="translation" class="col-sm-2 control-label">Translation</label>
+        <div class="col-sm-10">
+          <input [(ngModel)]="search.translation" name="translation" class="form-control" id="translation" placeholder="Translation">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">Language</label>
+        <div class="col-sm-10">
+          <select [(ngModel)]="search.language" name="language" class="form-control"> 
+              <option *ngFor="let lang of languages" [value]="lang">{{lang}}</option>
+           </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button (click)="searchTranslations()" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row bottom-margin">
+    <div class="btn-group" role="group" aria-label="...">
+      <button (click)="new()" type="button" class="btn btn-default">New</button>
+      <button (click)="edit()" type="button" class="btn btn-default">Edit</button>
+      <button type="button" class="btn btn-default">Delete</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <table id="translations" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Translation</th>
+          <th>Language</th>
+          <th>Modified by</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of translations; let i = index; trackBy:trackByIndex" id="{{t.id}}" (click)="selectForEdit(t.id)">
+          <td class="tr_key">{{t.key}}</td>
+          <td class="tr_tr">{{t.translation}}</td>
+          <td>{{t.lang}}</td>
+          <td>{{t.modifiedBy}}</td>
+          <td>{{t.date | date}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="showUpdateBtn" class="row bottom-margin">
+    <div class="btn-group" role="group" aria-label="...">
+      <button (click) = "update()" type="button" class="btn btn-warning">Update</button>
+    </div>
+  </div>
+
+</div>
