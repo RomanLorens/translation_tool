@@ -36,4 +36,19 @@ public class TranslationController {
 		return translations;
 	}
 	
+	@RequestMapping("/api/languages")
+	@ResponseBody
+	public List<LanguageDto> languages() {
+		List<LanguageDto> l = new ArrayList<>();
+		LanguageDto eng = new LanguageDto();
+		eng.setId(1);
+		eng.setName("eng");
+		l.add(eng);
+		LanguageDto es = new LanguageDto();
+		es.setId(2);
+		es.setName("es");
+		l.add(es);
+		return l;
+	}
+	
 }

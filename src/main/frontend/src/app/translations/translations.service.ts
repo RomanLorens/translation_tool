@@ -3,14 +3,15 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {Translation} from './Translation';
+import {Language} from './Language'
 
 @Injectable()
 export class TranslationsService {
 
   constructor(private http: Http) { }
 
-  getLanguages() {
-    return ['all', 'eng', 'pl'];
+  getLanguages(){
+    return this.http.get('/api/languages').map((res: Response) => res.json());
   }
 
   search(filter) {

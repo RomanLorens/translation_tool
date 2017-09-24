@@ -22,7 +22,7 @@
         <label for="status" class="col-sm-2 control-label">Language</label>
         <div class="col-sm-10">
           <select [(ngModel)]="search.language" name="language" class="form-control"> 
-              <option *ngFor="let lang of languages" [value]="lang">{{lang}}</option>
+              <option *ngFor="let lang of languages" [value]="lang.id">{{lang.name}}</option>
            </select>
         </div>
       </div>
@@ -60,7 +60,7 @@
         <tr *ngFor="let t of translations; let i = index; trackBy:trackByIndex" id="{{t.id}}" (click)="selectForEdit(t.id)">
           <td class="tr_key">{{t.key}}</td>
           <td class="tr_tr">{{t.translation}}</td>
-          <td>{{t.lang}}</td>
+          <td class="tr_lang">{{langMap.get(t.lang).name}}</td>
           <td>{{t.modifiedBy}}</td>
           <td>{{t.date | date}}</td>
         </tr>
